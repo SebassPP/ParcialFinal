@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "Hash": "qYOF6Z0T7VR4479TOdqwegRKoDs6TbCe6DTDknTyOYU=",
+  "Source": "ClaseTerserCorte",
+  "BasePath": "_content/ClaseTerserCorte",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "ClaseTerserCorte\\wwwroot",
+      "Source": "ClaseTerserCorte",
+      "ContentRoot": "C:\\Users\\sebas\\source\\repos\\ClaseTerserCorte\\ClaseTerserCorte\\wwwroot\\",
+      "BasePath": "_content/ClaseTerserCorte",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\sebas\\.nuget\\packages\\mudblazor\\6.0.9\\staticwebassets\\MudBlazor.min.css",
+      "SourceId": "MudBlazor",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\sebas\\.nuget\\packages\\mudblazor\\6.0.9\\staticwebassets\\",
+      "BasePath": "_content/MudBlazor",
+      "RelativePath": "MudBlazor.min.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\sebas\\.nuget\\packages\\mudblazor\\6.0.9\\staticwebassets\\MudBlazor.min.css"
+    },
+    {
+      "Identity": "C:\\Users\\sebas\\.nuget\\packages\\mudblazor\\6.0.9\\staticwebassets\\MudBlazor.min.js",
+      "SourceId": "MudBlazor",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\sebas\\.nuget\\packages\\mudblazor\\6.0.9\\staticwebassets\\",
+      "BasePath": "_content/MudBlazor",
+      "RelativePath": "MudBlazor.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\sebas\\.nuget\\packages\\mudblazor\\6.0.9\\staticwebassets\\MudBlazor.min.js"
+    },
+    {
+      "Identity": "C:\\Users\\sebas\\source\\repos\\ClaseTerserCorte\\ClaseTerserCorte\\wwwroot\\favicon.ico",
+      "SourceId": "ClaseTerserCorte",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\sebas\\source\\repos\\ClaseTerserCorte\\ClaseTerserCorte\\wwwroot\\",
+      "BasePath": "_content/ClaseTerserCorte",
+      "RelativePath": "favicon.ico",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\favicon.ico"
+    }
+  ]
+}

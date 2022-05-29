@@ -1,0 +1,92 @@
+﻿@page "/Pacientes"
+
+@inject HttpClient _client;
+
+@using System.Net.Http.Json
+@using ClaseTerserCorte.Data
+
+<MudButton OnClick="(args) => AgregarNuevoRegistro()" Variant="Variant.Filled" Color="Color.Primary">Añadir</MudButton>
+
+<MudDataGrid T="Paciente" Items="@Pacientes" ReadOnly="@_readOnly" EditMode="@(_isCellEditMode ? DataGridEditMode.Cell : DataGridEditMode.Form)"
+    StartedEditingItem="@StartedEditingItem" CancelledEditingItem="@CancelledEditingItem" CommittedItemChanges="@CommittedItemChanges"
+    Bordered="true" Dense="true" EditTrigger="@(_editTriggerRowClick ? DataGridEditTrigger.OnRowClick : DataGridEditTrigger.Manual)">
+    <Columns>
+        <Column T="Paciente" Field="IdPaciente" Title="Id" IsEditable="false" />
+        <Column T="Paciente" Field="Nombres" />
+        <Column T="Paciente" Field="Apellidos" />
+        <Column T="Paciente" Field="Departamento"/>
+        <Column T="Paciente" Field="Descripcion" Title="Descripcion" />
+        <Column T="Paciente" Field="FechaNacimiento" Title="Fecha de nacimiento" />
+        <Column T="Paciente" Hidden="@(_isCellEditMode || _readOnly || _editTriggerRowClick)" CellClass="d-flex justify-end">
+            <CellTemplate>
+                <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Edit" OnClick="@context.Actions.StartEditingItem" />
+                <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Add" OnClick="(args) => AgregarNuevoRegistro()"  />
+                <MudIconButton Size="@Size.Small" Icon="@Icons.Outlined.Delete" OnClick="(args) => EliminarEvento(context.Item)"  />
+            </CellTemplate>
+        </Column>
+    </Columns>
+</MudDataGrid>
+
+@code {
+    private IEnumerable<Paciente> Pacientes = new List<Paciente>();
+    private bool _readOnly;
+    private bool _isCellEditMode;
+    private List<string> _events = new();
+    private bool _editTriggerRowClick;
+
+    private int Numero = 15;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var elemento = new List<Paciente>();
+        _client.BaseAddress = new Uri("https://localhost:7174/");
+
+        var requestMessage = new HttpRequestMessage(HttpMethod.Get, "Biblioteca/ConsultaPaciente");
+        var respuesta = await _client.SendAsync(requestMessage);
+        if(respuesta.StatusCode == System.Net.HttpStatusCode.OK)
+        {
+            var responseBody = await respuesta.Content.ReadAsStringAsync();
+            var listasPaciente = System.Text.Json.JsonSerializer.Deserialize<List<Paciente>>(responseBody);
+            Pacientes = listasPaciente;
+        }
+
+    }
+
+    // events
+    void StartedEditingItem(Paciente item)
+    {
+        _events.Insert(0, $"Event = StartedEditingItem, Data = {System.Text.Json.JsonSerializer.Serialize(item)}");
+    }
+
+    void CancelledEditingItem(Paciente item)
+    {
+        _events.Insert(0, $"Event = CancelledEditingItem, Data = {System.Text.Json.JsonSerializer.Serialize(item)}");
+    }
+    //Este servira para guardar o actualizar registros
+    void CommittedItemChanges(Paciente item)
+    {
+        _events.Insert(0, $"Event = CommittedItemChanges, Data = {System.Text.Json.JsonSerializer.Serialize(item)}");
+    }
+    void AgregarNuevoRegistro()
+    {
+        var elemento = new Paciente
+            {
+                Nombres = "Nuevo Nombres de Paciente",
+                Apellidos = "Nuevo Apellido de Paciente",
+            };
+            ((List<Paciente>)Pacientes).Add(elemento);
+            StateHasChanged();
+    }
+    async void EliminarEvento(Paciente paciente)
+    {
+         var elemento = new Paciente
+            {
+              
+            };
+        ((List<Paciente>)Pacientes).Remove(elemento);
+        StateHasChanged();
+    }
+        
+    }
+}
+
